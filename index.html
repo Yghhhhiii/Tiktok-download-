@@ -97,9 +97,8 @@
       }
 
       try {
-        const res = await fetch(`https://api.sxtream.xyz/downloader/tiktok?url=encodeURIComponent(url)`, 
+        const res = await fetch(`https://api.sxtream.xyz/downloader/tiktokv2?url=encodeURIComponent(url)`, 
           headers: 
-            'apikey': 'Wota48'
           );
 
         const data = await res.json();
