@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Downloader TikTok - ZonaWota48</title>
+  <style>
+    body {
+      background-color: #fff7c5;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #ff9900;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+      width: 300px;
+    }
+    video {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 10px;
+    }
+    .download-btn {
+      display: inline-block;
+      margin-top: 10px;
+      background-color: #f5b301;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+    .download-btn:hover {
+      background-color: #d9a100;
+    }
+  </style>
+</head>
+<body>
+  <h1>Downloader TikTok</h1>
+  <p>Tempel link video TikTok kamu di bawah</p>
+  <input type="text" id="url" placeholder="Masukkan URL TikTok">
+  <br>
+  <button onclick="download()">Download</button>
+  <div id="result"></div><script>
+    async function download() {
+      const url = document.getElementById("url").value;
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "⏳ Sedang memproses...";
+
+      try {
+        const res = await fetch(`https://api.sxtream.xyz/downloader/tiktokv2?url=encodeURIComponent(url)`);
+        const data = await res.json();
+
+        if (data.result        data.result.video) 
+          resultDiv.innerHTML = `
+            <video controls>
+              <source src="{data.result.video}" type="video/mp4">
+              Browser tidak mendukung video.
+            </video>
+            <br>
+            <a href="${data.result.video}" download class="download-btn">⬇ Download Video</a>
+          `;
+        } else {
+          resultDiv.innerHTML = "❌ Gagal mengambil video.";
+        }
+      } catch (error) {
+        resultDiv.innerHTML = "⚠️ Terjadi kesalahan. Periksa URL kamu.";
+      }
+    }
+  </script>
+</body>
+</html>
